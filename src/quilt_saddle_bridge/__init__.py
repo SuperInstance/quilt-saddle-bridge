@@ -9,6 +9,7 @@ The Quilt's CastingDecision profiles become saddle's FrozenStates.
 
 Phase 1 (write): Quilt → saddle
 Phase 2 (read): saddle → Quilt (the nightcycle's report feeds back)
+Phase 3 (nightcycle): the Python nightcycle runner
 
 Why: the Quilt knows *which model* to use; saddle knows *how to use it* (the
 prompt, filters, params). Together they close the harness loop.
@@ -30,6 +31,10 @@ from .phase2 import (
     AlignmentStats,
     wilson_lower as wilson_lower_phase2,
 )
+from .nightcycle import (
+    NightcycleRunner, NightcycleReport, NightcycleAlignmentStats,
+    main as nightcycle_main,
+)
 from .saddle_types import (
     LedgerEntry,
     FrozenState,
@@ -39,7 +44,7 @@ from .saddle_types import (
     OutcomeFact,
 )
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "QuiltSaddleBridge",
@@ -47,6 +52,10 @@ __all__ = [
     "SaddleToQuiltConverter",
     "SaddleLedgerReader",
     "AlignmentStats",
+    "NightcycleRunner",
+    "NightcycleReport",
+    "NightcycleAlignmentStats",
+    "nightcycle_main",
     "casting_event_to_ledger_entry",
     "casting_decision_to_frozen_state",
     "canonical_json",
